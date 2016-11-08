@@ -5,7 +5,9 @@
     xmlns:local="using:WeatherAppComplete"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d">
+    mc:Ignorable="d"
+    NavigationCacheMode="Enabled">
+    
 
     <StackPanel Background="CadetBlue">
 
@@ -26,7 +28,7 @@
                     <Image Name="icon0" Stretch="Fill" />
                 </Button>
                 <TextBlock Name="maxTemp0" TextAlignment="Center" FontSize="30" />
-                <!--<TextBlock Name="minTemp0"/>-->
+                
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,0,15,0" >
@@ -35,7 +37,7 @@
                     <Image Name="icon1" Stretch="Fill"   />
                 </Button>
                 <TextBlock Name="maxTemp1" TextAlignment="Center" FontSize="30" />
-                <!--<TextBlock Name="minTemp1"/>-->
+                
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,0,15,0" >
@@ -44,7 +46,7 @@
                     <Image Name="icon2" Stretch="Fill"  />
                 </Button>
                 <TextBlock Name="maxTemp2" TextAlignment="Center" FontSize="30" />
-                <!--<TextBlock Name="minTemp2"/>-->
+                
             </StackPanel>
 
             <StackPanel Orientation="Vertical" Margin="0,0,15,0">
@@ -53,7 +55,7 @@
                     <Image Name="icon3" Stretch="Fill" />
                 </Button>
                 <TextBlock Name="maxTemp3" TextAlignment="Center" FontSize="30" />
-                <!--<TextBlock Name="minTemp3"/>-->
+               
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
@@ -62,7 +64,7 @@
                     <Image Name="icon4" Stretch="Fill" />
                 </Button>
                 <TextBlock Name="maxTemp4" TextAlignment="Center" FontSize="30"/>
-                <!--<TextBlock Name="minTemp4"/>-->
+                
             </StackPanel>
         </StackPanel>
 

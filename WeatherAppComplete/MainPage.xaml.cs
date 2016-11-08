@@ -31,8 +31,7 @@ namespace WeatherAppComplete
         {
             this.InitializeComponent();
         }
-
-
+        
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
             cityName = searchBox.Text;
@@ -40,14 +39,11 @@ namespace WeatherAppComplete
             RootObject currentWeather = await Proxy.GetWeather(cityName);
             FiveDayForecast Forecast = new FiveDayForecast(currentWeather);
 
-
             ////Day0
             buttonDayZero.Visibility = Visibility.Visible;
             icon0.Source = Forecast.fiveDayForecastArr[0].IconSource;
             date0.Text = Forecast.fiveDayForecastArr[0].Date;
             maxTemp0.Text = Forecast.fiveDayForecastArr[0].Temp;
-
-
 
             ////Day1
             buttonDayOne.Visibility = Visibility.Visible;
@@ -55,13 +51,11 @@ namespace WeatherAppComplete
             date1.Text = Forecast.fiveDayForecastArr[1].Date;
             maxTemp1.Text = Forecast.fiveDayForecastArr[1].Temp;
 
-
             ////Day2
             buttonDayTwo.Visibility = Visibility.Visible;
             icon2.Source = Forecast.fiveDayForecastArr[2].IconSource;
             date2.Text = Forecast.fiveDayForecastArr[2].Date;
             maxTemp2.Text = Forecast.fiveDayForecastArr[2].Temp;
-
 
             ////Day3
             buttonDayThree.Visibility = Visibility.Visible;
@@ -73,14 +67,15 @@ namespace WeatherAppComplete
             buttonDayFour.Visibility = Visibility.Visible;
             icon4.Source = Forecast.fiveDayForecastArr[4].IconSource;
             date4.Text = Forecast.fiveDayForecastArr[4].Date;
-            maxTemp4.Text = Forecast.fiveDayForecastArr[4].Temp; 
-             
+            maxTemp4.Text = Forecast.fiveDayForecastArr[4].Temp;     
         }
 
         private void DayZeroWeather(object sender, RoutedEventArgs e)
         {
-            pageState = 0; 
+
+            pageState = 0;
             Frame.Navigate(typeof(DailyWeather), null);
+            
         }
 
         private void DayOneWeather(object sender, RoutedEventArgs e)

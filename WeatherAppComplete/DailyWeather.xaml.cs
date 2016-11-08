@@ -24,15 +24,13 @@ namespace WeatherAppComplete
     {
         public DailyWeather()
         {
-            this.InitializeComponent();
-            
+            this.InitializeComponent();         
         }
 
         private async void PageLoaded(object sender, RoutedEventArgs e)
         {
             string city = MainPage.cityName;
-            dailyCityName.Text = city;
-
+            //dailyCityName.Text = city;
             RootObject dayWeather = await Proxy.GetWeather(city);
 
             FullDayWeather day = new FullDayWeather(MainPage.pageState, dayWeather);
@@ -44,13 +42,11 @@ namespace WeatherAppComplete
             dailyMaxTemp.Text = day.Temp;
             dailyWindDir.Text = day.WindDirection;
             dailyWindSpeed.Text = day.WindSpeed;
-
         }
 
         private void BackToMain_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Navigate(typeof(MainPage),null);
-            
+            Frame.Navigate(typeof(MainPage),null);           
         }
     }
 }
