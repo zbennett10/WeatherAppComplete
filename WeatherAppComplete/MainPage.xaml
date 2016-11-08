@@ -20,37 +20,47 @@
 
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Name="date0" TextAlignment="Center" FontSize="40" Margin="0,0,20,0"/>
-                <Image Name="icon0" Height="75" Width="75" Margin="0,0,20,0"/>
-                <TextBlock Name="maxTemp0" TextAlignment="Center" FontSize="30" Margin="0,0,20,0"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,15,0">
+                <TextBlock Name="date0" TextAlignment="Center" FontSize="40" />
+                <Button Name="buttonDayZero" Click="DayZeroWeather" Height="75" Width="85" Visibility="Collapsed">
+                    <Image Name="icon0" Stretch="Fill" />
+                </Button>
+                <TextBlock Name="maxTemp0" TextAlignment="Center" FontSize="30" />
                 <!--<TextBlock Name="minTemp0"/>-->
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Name="date1" TextAlignment="Center" FontSize="40" Margin="0,0,20,0"/>
-                <Image Name="icon1" Height="75" Width="75" Margin="0,0,20,0" />
-                <TextBlock Name="maxTemp1" TextAlignment="Center" FontSize="30" Margin="0,0,20,0"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,15,0" >
+                <TextBlock Name="date1" TextAlignment="Center" FontSize="40" />
+                <Button Name="buttonDayOne" Click="DayOneWeather" Height="75" Width="85" Visibility="Collapsed">
+                    <Image Name="icon1" Stretch="Fill"   />
+                </Button>
+                <TextBlock Name="maxTemp1" TextAlignment="Center" FontSize="30" />
                 <!--<TextBlock Name="minTemp1"/>-->
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Name="date2" TextAlignment="Center" FontSize="40" Margin="0,0,20,0"/>
-                <Image Name="icon2" Height="75" Width="75" Margin="0,0,20,0" />
-                <TextBlock Name="maxTemp2" TextAlignment="Center" FontSize="30" Margin="0,0,20,0"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,15,0" >
+                <TextBlock Name="date2" TextAlignment="Center" FontSize="40"/>
+                <Button Name="buttonDayTwo" Click="DayTwoWeather" Height="75" Width="85" Visibility="Collapsed">
+                    <Image Name="icon2" Stretch="Fill"  />
+                </Button>
+                <TextBlock Name="maxTemp2" TextAlignment="Center" FontSize="30" />
                 <!--<TextBlock Name="minTemp2"/>-->
             </StackPanel>
 
-            <StackPanel Orientation="Vertical" >
-                <TextBlock Name="date3" TextAlignment="Center" FontSize="40" Margin="0,0,20,0"/>
-                <Image Name="icon3" Height="75" Width="75" Margin="0,0,20,0"/>
-                <TextBlock Name="maxTemp3" TextAlignment="Center" FontSize="30" Margin="0,0,20,0"/>
+            <StackPanel Orientation="Vertical" Margin="0,0,15,0">
+                <TextBlock Name="date3" TextAlignment="Center" FontSize="40" />
+                <Button Name="buttonDayThree" Click="DayThreeWeather" Height="75" Width="85" Visibility="Collapsed">
+                    <Image Name="icon3" Stretch="Fill" />
+                </Button>
+                <TextBlock Name="maxTemp3" TextAlignment="Center" FontSize="30" />
                 <!--<TextBlock Name="minTemp3"/>-->
             </StackPanel>
 
             <StackPanel Orientation="Vertical">
                 <TextBlock Name="date4" TextAlignment="Center" FontSize="40"/>
-                <Image Name="icon4" Height="75" Width="75" />
+                <Button Name="buttonDayFour" Click="DayFourWeather" Height="75" Width="85" Visibility="Collapsed">
+                    <Image Name="icon4" Stretch="Fill" />
+                </Button>
                 <TextBlock Name="maxTemp4" TextAlignment="Center" FontSize="30"/>
                 <!--<TextBlock Name="minTemp4"/>-->
             </StackPanel>

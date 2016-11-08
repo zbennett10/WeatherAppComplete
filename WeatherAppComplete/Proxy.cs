@@ -15,17 +15,30 @@ namespace WeatherAppComplete
     {
         public async static Task<RootObject> GetWeather(string cityName)
         {
-            var http = new HttpClient();
-            var response = await http.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units=imperial&appID=156ce1f2ff11af0169f79b186098b7a6", cityName));
-            var result = await response.Content.ReadAsStringAsync();
-            var serializer = new DataContractJsonSerializer(typeof(RootObject));
+            var forecastHttp = new HttpClient();
+            var forecastResponse = await forecastHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units=imperial&appID=156ce1f2ff11af0169f79b186098b7a6", cityName));
+            var forecastResult = await forecastResponse.Content.ReadAsStringAsync();
+            var forecastSerializer = new DataContractJsonSerializer(typeof(RootObject));
 
-            var memoryStream = new MemoryStream(Encoding.UTF8.GetBytes(result));
-            var data = (RootObject)serializer.ReadObject(memoryStream);
+            var forecastMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(forecastResult));
+            var forecastData = (RootObject)forecastSerializer.ReadObject(forecastMemoryStream);
 
-            return data;
+            return forecastData;
 
         }
+
+
+        //public async static Task<RootObject> GetDayWeather(string cityName)
+        //{
+        //    var dailyHttp = new HttpClient();
+        //    var dailyResponse = await dailyHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/weather?q={0}&units=imperial&appID=156ce1f2ff11af0169f79b186098b7a6", cityName));
+        //    var dailyResult = await dailyResponse.Content.ReadAsStringAsync();
+        //    var dailySerializer = new DataContractJsonSerializer(typeof(RootObject));
+        //    var dailyMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(dailyResult));
+        //    var dailyData = (RootObject)dailySerializer.ReadObject(dailyMemoryStream);
+
+        //    return dailyData;
+        //}
     }
 
 
@@ -72,6 +85,88 @@ namespace WeatherAppComplete
         }
 
     }
+
+
+    public class FullDayWeather
+    {
+        public RootObject DayWeather { get; set; }
+        public int Day { get; set; }
+            
+        //populate controls
+        public BitmapImage IconSource { get; set; }
+        public string Date { get; set; }
+        public string Temp { get; set; }
+        public string Description { get; set; }
+        public string Humidity { get; set; }
+        public string Pressure { get; set; }
+        public string WindSpeed { get; set; }
+        public string WindDirection { get; set; }
+
+
+        public FullDayWeather(int day, RootObject weather)
+        {
+            this.Day = day;
+            this.DayWeather = weather;
+            switch(day) 
+            {
+                case 0:
+                    this.Date = DateTime.Parse(weather.list[0].dt_txt).ToString("ddd");
+                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[0].main.temp));
+                    this.Description = weather.list[0].weather[0].description;
+                    this.Humidity = weather.list[0].main.humidity.ToString();
+                    this.Pressure = weather.list[0].main.pressure.ToString();
+                    this.WindSpeed = weather.list[0].wind.speed.ToString();
+                    this.WindDirection = weather.list[0].wind.deg.ToString();
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));         
+                    break;
+                case 1:
+                    this.Date = DateTime.Parse(weather.list[8].dt_txt).ToString("ddd");
+                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[8].main.temp));
+                    this.Description = weather.list[8].weather[0].description;
+                    this.Humidity = weather.list[8].main.humidity.ToString();
+                    this.Pressure = weather.list[8].main.pressure.ToString();
+                    this.WindSpeed = weather.list[8].wind.speed.ToString();
+                    this.WindDirection = weather.list[8].wind.deg.ToString();
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[8].weather[0].icon)));
+                    break;
+                case 2:
+                    this.Date = DateTime.Parse(weather.list[16].dt_txt).ToString("ddd");
+                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[16].main.temp));
+                    this.Description = weather.list[16].weather[0].description;
+                    this.Humidity = weather.list[16].main.humidity.ToString();
+                    this.Pressure = weather.list[16].main.pressure.ToString();
+                    this.WindSpeed = weather.list[16].wind.speed.ToString();
+                    this.WindDirection = weather.list[16].wind.deg.ToString();
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[16].weather[0].icon)));
+                    break;
+                case 3:
+                    this.Date = DateTime.Parse(weather.list[24].dt_txt).ToString("ddd");
+                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[24].main.temp));
+                    this.Description = weather.list[24].weather[0].description;
+                    this.Humidity = weather.list[24].main.humidity.ToString();
+                    this.Pressure = weather.list[24].main.pressure.ToString();
+                    this.WindSpeed = weather.list[24].wind.speed.ToString();
+                    this.WindDirection = weather.list[24].wind.deg.ToString();
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[24].weather[0].icon)));
+                    break;
+                case 4:
+                    this.Date = DateTime.Parse(weather.list[32].dt_txt).ToString("ddd");
+                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[32].main.temp));
+                    this.Description = weather.list[32].weather[0].description;
+                    this.Humidity = weather.list[32].main.humidity.ToString();
+                    this.Pressure = weather.list[32].main.pressure.ToString();
+                    this.WindSpeed = weather.list[32].wind.speed.ToString();
+                    this.WindDirection = weather.list[32].wind.deg.ToString();
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[32].weather[0].icon)));
+                    break;
+                
+
+              }
+            
+                
+            }
+        }
+    
 
 
 
