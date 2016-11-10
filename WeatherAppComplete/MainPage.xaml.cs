@@ -27,7 +27,10 @@ namespace WeatherAppComplete
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        // global variable that causes the name of the searched city to persist throughout multiple pages  
         public static string cityName { get; set; }
+
+        // global variable that determines which day of the week to display
         public static int pageState { get; set; }
        
 
@@ -37,63 +40,80 @@ namespace WeatherAppComplete
            
         }
 
+        //sets focus off of the textbox where our search is conducted
         private void MainPage_OnLoad(object sender, RoutedEventArgs e)
         {
             
             buttonSearch.Focus(FocusState.Programmatic);
         }
 
-        
+        //causes placeholder text to disappear when user clicks inside of text box in order to search
         private void OnFocus(object sender, RoutedEventArgs e)
         {
             searchBox.Text = "";
             searchBox.GotFocus -= OnFocus;
         }
 
+        //displays day of the week buttons
+        private void Button_Displayer()
+        {
+            buttonDayZero.Visibility = Visibility.Visible;
+            buttonDayOne.Visibility = Visibility.Visible;
+            buttonDayTwo.Visibility = Visibility.Visible;
+            buttonDayThree.Visibility = Visibility.Visible;
+            buttonDayFour.Visibility = Visibility.Visible;
+        }
+
+        //populates xaml images with corresponding weather icon 
+        private void Icon_Populator(FiveDayForecast forecast, int[] days)
+        {
+            icon0.Source = forecast.fiveDayForecastArr[days[0]].IconSource;
+            icon1.Source = forecast.fiveDayForecastArr[days[1]].IconSource;
+            icon2.Source = forecast.fiveDayForecastArr[days[2]].IconSource;
+            icon3.Source = forecast.fiveDayForecastArr[days[3]].IconSource;
+            icon4.Source = forecast.fiveDayForecastArr[days[4]].IconSource;
+        }
+
+        //populates the days of the week text
+        private void Date_Populator(FiveDayForecast forecast, int[] days)
+        {
+            date0.Text = forecast.fiveDayForecastArr[days[0]].Date;
+            date1.Text = forecast.fiveDayForecastArr[days[1]].Date;
+            date2.Text = forecast.fiveDayForecastArr[days[2]].Date;
+            date3.Text = forecast.fiveDayForecastArr[days[3]].Date;
+            date4.Text = forecast.fiveDayForecastArr[days[4]].Date;
+        }
+
+        //populates the temperature text for each day
+        private void Temp_Populator(FiveDayForecast forecast, int[] days)
+        {
+            maxTemp0.Text = forecast.fiveDayForecastArr[days[0]].Temp;
+            maxTemp1.Text = forecast.fiveDayForecastArr[days[1]].Temp;
+            maxTemp2.Text = forecast.fiveDayForecastArr[days[2]].Temp;
+            maxTemp3.Text = forecast.fiveDayForecastArr[days[3]].Temp;
+            maxTemp4.Text = forecast.fiveDayForecastArr[days[4]].Temp;
+        }
+
+        //activates proxy and populates xaml controls with data from proxy with OpenWeatherMap
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
             cityName = searchBox.Text;
             textBlockCity.Text = cityName;
             RootObject currentWeather = await Proxy.GetWeather(cityName);
             FiveDayForecast Forecast = new FiveDayForecast(currentWeather);
+            int[] days = { 0, 1, 2, 3, 4 };
 
-            ////Day0
-            buttonDayZero.Visibility = Visibility.Visible;
-            icon0.Source = Forecast.fiveDayForecastArr[0].IconSource;
-            date0.Text = Forecast.fiveDayForecastArr[0].Date;
-            maxTemp0.Text = Forecast.fiveDayForecastArr[0].Temp;
-
-            ////Day1
-            buttonDayOne.Visibility = Visibility.Visible;
-            icon1.Source = Forecast.fiveDayForecastArr[1].IconSource;
-            date1.Text = Forecast.fiveDayForecastArr[1].Date;
-            maxTemp1.Text = Forecast.fiveDayForecastArr[1].Temp;
-
-            ////Day2
-            buttonDayTwo.Visibility = Visibility.Visible;
-            icon2.Source = Forecast.fiveDayForecastArr[2].IconSource;
-            date2.Text = Forecast.fiveDayForecastArr[2].Date;
-            maxTemp2.Text = Forecast.fiveDayForecastArr[2].Temp;
-
-            ////Day3
-            buttonDayThree.Visibility = Visibility.Visible;
-            icon3.Source = Forecast.fiveDayForecastArr[3].IconSource;
-            date3.Text = Forecast.fiveDayForecastArr[3].Date;
-            maxTemp3.Text = Forecast.fiveDayForecastArr[3].Temp;
-
-            ////Day4
-            buttonDayFour.Visibility = Visibility.Visible;
-            icon4.Source = Forecast.fiveDayForecastArr[4].IconSource;
-            date4.Text = Forecast.fiveDayForecastArr[4].Date;
-            maxTemp4.Text = Forecast.fiveDayForecastArr[4].Temp;     
+            Button_Displayer();
+            Icon_Populator(Forecast, days);
+            Date_Populator(Forecast, days);
+            Temp_Populator(Forecast, days);
         }
 
+        //these methods determine which day of the week to display based upon the button pressed by the user
         private void DayZeroWeather(object sender, RoutedEventArgs e)
         {
-
             pageState = 0;
-            Frame.Navigate(typeof(DailyWeather), null);
-            
+            Frame.Navigate(typeof(DailyWeather), null);    
         }
 
         private void DayOneWeather(object sender, RoutedEventArgs e)

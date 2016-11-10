@@ -25,27 +25,28 @@ namespace WeatherAppComplete
     {
         public DailyWeather()
         {
-            this.InitializeComponent();         
+            this.InitializeComponent();     
         }
 
-        //add method that changes fahrenheit to celsius upon mouseover
-
+        //Loads weather data of specific day depending on current pageState value
         private async void PageLoaded(object sender, RoutedEventArgs e)
         {
             string city = MainPage.cityName;        
             RootObject dayWeather = await Proxy.GetWeather(city);
             FullDayWeather day = new FullDayWeather(MainPage.pageState, dayWeather);
-            
+
             dailyWeatherDesc.Text = day.Description;
             dailyIcon.Source = day.IconSource;
             dailyDayName.Text = day.Date;
             dailyHumidity.Text = day.Humidity;
             dailyPressure.Text = day.Pressure;
             dailyMaxTemp.Text = day.Temp;
+            ToolTipService.SetToolTip(dailyMaxTemp, day.Celsius); 
             dailyWindDir.Text = day.WindDirection;
             dailyWindSpeed.Text = day.WindSpeed;
         }
-
+    
+        //navigation funtionality to allow user to return to main page
         private void BackToMain_Click(object sender, RoutedEventArgs e)
         {
             Frame.Navigate(typeof(MainPage),null);           

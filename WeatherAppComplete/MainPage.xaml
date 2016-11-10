@@ -11,8 +11,11 @@
 
     <StackPanel Background="CadetBlue" BorderBrush="Black" BorderThickness="10">
 
-        <StackPanel>
-            <Rectangle Fill="CadetBlue" Height="130"></Rectangle>
+        <StackPanel Height="150">
+            <StackPanel.Background>
+                <ImageBrush ImageSource="Assets/weather_banner1.jpg"></ImageBrush>
+            </StackPanel.Background>
+            
             
         </StackPanel>
         
@@ -21,8 +24,8 @@
         </StackPanel>
 
 
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <StackPanel Orientation="Vertical" Margin="0,0,15,0">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
+            <StackPanel Orientation="Vertical" Margin="15,0,15,0">
                 <TextBlock Name="date0" TextAlignment="Center" FontSize="40" />
                 <Button Name="buttonDayZero" Click="DayZeroWeather" Height="75" Width="85" Visibility="Collapsed">
                     <Image Name="icon0" Stretch="Fill" />
@@ -58,7 +61,7 @@
                
             </StackPanel>
 
-            <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Vertical" Margin="0,0,15,0">
                 <TextBlock Name="date4" TextAlignment="Center" FontSize="40"/>
                 <Button Name="buttonDayFour" Click="DayFourWeather" Height="75" Width="85" Visibility="Collapsed">
                     <Image Name="icon4" Stretch="Fill" />
@@ -68,9 +71,9 @@
             </StackPanel>
         </StackPanel>
 
-        <StackPanel Orientation="Vertical">
-            <TextBox Name="searchBox" Text="Enter City Here" Height="100" FontSize="50" GotFocus="OnFocus"/>
-            <Button Name="buttonSearch" Content="Search" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
+        <StackPanel Orientation="Vertical" Margin="15,0,15,0">
+            <TextBox Name="searchBox" Text="Enter City" Height="100" Width="350" FontSize="50" GotFocus="OnFocus"/>
+            <Button Name="buttonSearch" Content="Search" Margin="0,15,0,0" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
         </StackPanel>
 
         
