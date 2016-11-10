@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
+using System.Globalization;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -28,6 +29,21 @@ namespace WeatherAppComplete
             this.InitializeComponent();     
         }
 
+
+        //capitalizes first letter of every word in the weather description
+        public static string ToTitleCase(string str)
+        {
+          var wordArr = str.Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries);
+          for (var i = 0; i < wordArr.Length; i++)
+           {
+               var word = wordArr[i];
+               wordArr[i] = word.Substring(0, 1).ToUpper() + word.Substring(1);
+           }
+
+           return string.Join(" ", wordArr);
+         }
+        
+
         //Loads weather data of specific day depending on current pageState value
         private async void PageLoaded(object sender, RoutedEventArgs e)
         {
@@ -35,7 +51,7 @@ namespace WeatherAppComplete
             RootObject dayWeather = await Proxy.GetWeather(city);
             FullDayWeather day = new FullDayWeather(MainPage.pageState, dayWeather);
 
-            dailyWeatherDesc.Text = day.Description;
+            dailyWeatherDesc.Text = String.Format("'{0}'",ToTitleCase(day.Description));
             dailyIcon.Source = day.IconSource;
             dailyDayName.Text = day.Date;
             dailyHumidity.Text = day.Humidity;
@@ -44,6 +60,7 @@ namespace WeatherAppComplete
             ToolTipService.SetToolTip(dailyMaxTemp, day.Celsius); 
             dailyWindDir.Text = day.WindDirection;
             dailyWindSpeed.Text = day.WindSpeed;
+            dailyClouds.Text = day.Clouds;
         }
     
         //navigation funtionality to allow user to return to main page

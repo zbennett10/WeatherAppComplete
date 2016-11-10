@@ -37,6 +37,7 @@
             <TextBlock Text="Pressure:" FontSize="20" Margin="20,0,0,20"></TextBlock>
             <TextBlock Text="Wind Speed:" FontSize="20" Margin="20,0,0,20"></TextBlock>
             <TextBlock Text="Wind Dir:" FontSize="20" Margin="20,0,0,20"></TextBlock>
+            <TextBlock Text="Cloud Coverage:" FontSize="20" Margin="20,0,0,20"></TextBlock>
           </StackPanel>
 
         <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2">
@@ -46,6 +47,7 @@
             <TextBlock Name="dailyPressure"  FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>
             <TextBlock Name="dailyWindSpeed"  FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>
             <TextBlock Name="dailyWindDir"  FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>
+            <TextBlock Name="dailyClouds" FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>
         </StackPanel>
                 
                

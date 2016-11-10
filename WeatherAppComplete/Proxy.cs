@@ -86,6 +86,8 @@ namespace WeatherAppComplete
         public string WindSpeed { get; set; }
         public string WindDirection { get; set; }
         public string Celsius { get; set; }
+        public string Clouds { get; set; }
+        public string Rain { get; set; }
 
         //main constructor used to instantiate a specific day's weather
         public FullDayWeather(int day, RootObject weather)
@@ -105,7 +107,8 @@ namespace WeatherAppComplete
                     this.WindSpeed = Math.Round(weather.list[0].wind.speed).ToString() + " mph";
                     this.WindDirection = Math.Round(weather.list[0].wind.deg).ToString() + "°";
                     this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[0].main.temp - 32) * 5 / 9)).ToString() + "°C";                
+                    this.Celsius = Math.Round(((weather.list[0].main.temp - 32) * 5 / 9)).ToString() + "°C";
+                    this.Clouds = weather.list[0].clouds.all.ToString() + "%";                
                     break;
                 case 1:
                     this.Date = DateTime.Parse(weather.list[8].dt_txt).ToString("ddd");
@@ -117,6 +120,7 @@ namespace WeatherAppComplete
                     this.WindDirection = Math.Round(weather.list[8].wind.deg).ToString() + "°";
                     this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[8].weather[0].icon)));
                     this.Celsius = Math.Round(((weather.list[8].main.temp - 32) * 5 / 9)).ToString() + "°C";
+                    this.Clouds = weather.list[8].clouds.all.ToString() + "%";
                     break;
                 case 2:
                     this.Date = DateTime.Parse(weather.list[16].dt_txt).ToString("ddd");
@@ -128,6 +132,7 @@ namespace WeatherAppComplete
                     this.WindDirection = Math.Round(weather.list[16].wind.deg).ToString() + "°";
                     this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[16].weather[0].icon)));
                     this.Celsius = Math.Round(((weather.list[16].main.temp - 32) * 5 / 9)).ToString() + "°C";
+                    this.Clouds = weather.list[16].clouds.all.ToString() + "%";
                     break;
                 case 3:
                     this.Date = DateTime.Parse(weather.list[24].dt_txt).ToString("ddd");
@@ -139,6 +144,7 @@ namespace WeatherAppComplete
                     this.WindDirection = Math.Round(weather.list[24].wind.deg).ToString() + "°";
                     this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[24].weather[0].icon)));
                     this.Celsius = Math.Round(((weather.list[24].main.temp - 32) * 5 / 9)).ToString() + "°C";
+                    this.Clouds = weather.list[24].clouds.all.ToString() + "%";
                     break;
                 case 4:
                     this.Date = DateTime.Parse(weather.list[32].dt_txt).ToString("ddd");
@@ -150,6 +156,7 @@ namespace WeatherAppComplete
                     this.WindDirection = Math.Round(weather.list[32].wind.deg).ToString() + "°";
                     this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[32].weather[0].icon)));
                     this.Celsius = Math.Round(((weather.list[32].main.temp - 32) * 5 / 9)).ToString() + "°C";
+                    this.Clouds = weather.list[32].clouds.all.ToString() + "%";
                     break;                
               } 
           }
@@ -238,7 +245,7 @@ namespace WeatherAppComplete
     {
 
         [DataMember]
-        public double __invalid_name__3h { get; set; }
+        public double volume { get; set; }
     }
 
     [DataContract]
