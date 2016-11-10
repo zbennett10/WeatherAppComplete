@@ -74,9 +74,10 @@ namespace WeatherAppComplete
     {
         public RootObject DayWeather { get; set; }
         public int Day { get; set; }
-            
+           
         //populate controls
         public BitmapImage IconSource { get; set; }
+        //public BitmapImage Background { get; set; }
         public string Date { get; set; }
         public string Temp { get; set; }
         public string Description { get; set; }
@@ -102,7 +103,7 @@ namespace WeatherAppComplete
                     this.Pressure = "Pressure: " + weather.list[0].main.pressure.ToString();
                     this.WindSpeed = "Wind Speed: " + Math.Round(weather.list[0].wind.speed * 0.6818182).ToString() + " mph";
                     this.WindDirection = "Wind Direction: " + Math.Round(weather.list[0].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));         
+                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));                            
                     break;
                 case 1:
                     this.Date = DateTime.Parse(weather.list[8].dt_txt).ToString("ddd");

@@ -12,6 +12,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using Windows.UI.Xaml.Media.Imaging;
 
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234238
 
@@ -27,13 +28,14 @@ namespace WeatherAppComplete
             this.InitializeComponent();         
         }
 
+        //add method that changes fahrenheit to celsius upon mouseover
+
         private async void PageLoaded(object sender, RoutedEventArgs e)
         {
-            string city = MainPage.cityName;
-            //dailyCityName.Text = city;
+            string city = MainPage.cityName;        
             RootObject dayWeather = await Proxy.GetWeather(city);
-
             FullDayWeather day = new FullDayWeather(MainPage.pageState, dayWeather);
+            
             dailyWeatherDesc.Text = day.Description;
             dailyIcon.Source = day.IconSource;
             dailyDayName.Text = day.Date;

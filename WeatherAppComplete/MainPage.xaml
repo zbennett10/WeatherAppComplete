@@ -5,11 +5,11 @@
     xmlns:local="using:WeatherAppComplete"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
+    mc:Ignorable="d" Loaded="MainPage_OnLoad"
     NavigationCacheMode="Enabled">
     
 
-    <StackPanel Background="CadetBlue">
+    <StackPanel Background="CadetBlue" BorderBrush="Black" BorderThickness="10">
 
         <StackPanel>
             <Rectangle Fill="CadetBlue" Height="130"></Rectangle>
@@ -17,7 +17,7 @@
         </StackPanel>
         
         <StackPanel>
-            <TextBlock Name="textBlockCity" Text="" TextAlignment="Center" FontSize="60" FontWeight="Bold"/>
+            <TextBlock Name="textBlockCity" Text=""  TextAlignment="Center" FontSize="60" FontWeight="Bold" />
         </StackPanel>
 
 
@@ -69,8 +69,8 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical">
-            <TextBox Name="searchBox" Text="Enter City Here" Height="100" FontSize="50"/>
-            <Button Content="Search" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
+            <TextBox Name="searchBox" Text="Enter City Here" Height="100" FontSize="50" GotFocus="OnFocus"/>
+            <Button Name="buttonSearch" Content="Search" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
         </StackPanel>
 
         

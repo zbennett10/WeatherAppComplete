@@ -15,6 +15,9 @@ using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
 
 
+
+
+
 // The Blank Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=402352&clcid=0x409
 
 namespace WeatherAppComplete
@@ -26,12 +29,27 @@ namespace WeatherAppComplete
     {
         public static string cityName { get; set; }
         public static int pageState { get; set; }
+       
 
         public MainPage()
         {
             this.InitializeComponent();
+           
         }
+
+        private void MainPage_OnLoad(object sender, RoutedEventArgs e)
+        {
+            
+            buttonSearch.Focus(FocusState.Programmatic);
+        }
+
         
+        private void OnFocus(object sender, RoutedEventArgs e)
+        {
+            searchBox.Text = "";
+            searchBox.GotFocus -= OnFocus;
+        }
+
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
             cityName = searchBox.Text;
