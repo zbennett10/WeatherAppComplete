@@ -32,7 +32,9 @@ namespace WeatherAppComplete
 
         // global variable that determines which day of the week to display
         public static int pageState { get; set; }
-       
+
+        public delegate void Control_Population_Handler(FiveDayForecast forecast, int[] days);
+        
 
         public MainPage()
         {
@@ -53,6 +55,9 @@ namespace WeatherAppComplete
             searchBox.Text = "";
             searchBox.GotFocus -= OnFocus;
         }
+
+        
+
 
         //displays day of the week buttons
         private void Button_Displayer()
@@ -104,9 +109,10 @@ namespace WeatherAppComplete
             int[] days = { 0, 1, 2, 3, 4 };
 
             Button_Displayer();
-            Icon_Populator(Forecast, days);
-            Date_Populator(Forecast, days);
-            Temp_Populator(Forecast, days);
+            Control_Population_Handler Populator = new Control_Population_Handler(Icon_Populator);
+            Populator += Date_Populator;
+            Populator += Temp_Populator;
+            Populator(Forecast, days);
         }
 
         //these methods determine which day of the week to display based upon the button pressed by the user

@@ -74,6 +74,11 @@ namespace WeatherAppComplete
     {
         public RootObject DayWeather { get; set; }
         public int Day { get; set; }
+        public int day0 = 0;
+        public int day1 = 8;
+        public int day2 = 16;
+        public int day3 = 24;
+        public int day4 = 32;
            
         //populate controls
         public BitmapImage IconSource { get; set; }
@@ -89,6 +94,21 @@ namespace WeatherAppComplete
         public string Clouds { get; set; }
         public string Rain { get; set; }
 
+        //populates the weather for a specific day
+        private void Weather_Populator(int day, RootObject weather)
+        {
+            this.Date = DateTime.Parse(weather.list[day].dt_txt).ToString("ddd");
+            this.Temp = String.Format("{0}°F ", Math.Round(weather.list[day].main.temp));
+            this.Description = weather.list[day].weather[0].description;
+            this.Humidity = weather.list[day].main.humidity.ToString() + "%";
+            this.Pressure = weather.list[day].main.pressure.ToString() + " hPa";
+            this.WindSpeed = Math.Round(weather.list[day].wind.speed).ToString() + " mph";
+            this.WindDirection = Math.Round(weather.list[day].wind.deg).ToString() + "°";
+            this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));
+            this.Celsius = Math.Round(((weather.list[day].main.temp - 32) * 5 / 9)).ToString() + "°C";
+            this.Clouds = weather.list[day].clouds.all.ToString() + "%";
+        }
+
         //main constructor used to instantiate a specific day's weather
         public FullDayWeather(int day, RootObject weather)
         {
@@ -98,65 +118,20 @@ namespace WeatherAppComplete
             //constructs the day's weather class according to the specific day of the week the user clicks on
             switch(day) 
             {
-                case 0:
-                    this.Date = DateTime.Parse(weather.list[0].dt_txt).ToString("ddd");
-                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[0].main.temp));
-                    this.Description = weather.list[0].weather[0].description;
-                    this.Humidity = weather.list[0].main.humidity.ToString() + "%";
-                    this.Pressure = weather.list[0].main.pressure.ToString() + " hPa";
-                    this.WindSpeed = Math.Round(weather.list[0].wind.speed).ToString() + " mph";
-                    this.WindDirection = Math.Round(weather.list[0].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[0].main.temp - 32) * 5 / 9)).ToString() + "°C";
-                    this.Clouds = weather.list[0].clouds.all.ToString() + "%";                
+                case 0:                   
+                    Weather_Populator(day0, this.DayWeather);               
                     break;
-                case 1:
-                    this.Date = DateTime.Parse(weather.list[8].dt_txt).ToString("ddd");
-                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[8].main.temp));
-                    this.Description = weather.list[8].weather[0].description;
-                    this.Humidity = weather.list[8].main.humidity.ToString() + "%";
-                    this.Pressure = weather.list[8].main.pressure.ToString() + " hPa";
-                    this.WindSpeed = Math.Round(weather.list[8].wind.speed).ToString() + " mph";
-                    this.WindDirection = Math.Round(weather.list[8].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[8].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[8].main.temp - 32) * 5 / 9)).ToString() + "°C";
-                    this.Clouds = weather.list[8].clouds.all.ToString() + "%";
+                case 1:                    
+                    Weather_Populator(day1, this.DayWeather);
                     break;
-                case 2:
-                    this.Date = DateTime.Parse(weather.list[16].dt_txt).ToString("ddd");
-                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[16].main.temp));
-                    this.Description = weather.list[16].weather[0].description;
-                    this.Humidity = weather.list[16].main.humidity.ToString() + "%";
-                    this.Pressure = weather.list[16].main.pressure.ToString() + " hPa";
-                    this.WindSpeed = Math.Round(weather.list[16].wind.speed).ToString() + " mph";
-                    this.WindDirection = Math.Round(weather.list[16].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[16].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[16].main.temp - 32) * 5 / 9)).ToString() + "°C";
-                    this.Clouds = weather.list[16].clouds.all.ToString() + "%";
+                case 2:                    
+                    Weather_Populator(day2, this.DayWeather);
                     break;
-                case 3:
-                    this.Date = DateTime.Parse(weather.list[24].dt_txt).ToString("ddd");
-                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[24].main.temp));
-                    this.Description = weather.list[24].weather[0].description;
-                    this.Humidity = weather.list[24].main.humidity.ToString() + "%";
-                    this.Pressure = weather.list[24].main.pressure.ToString() + " hPa";
-                    this.WindSpeed = Math.Round(weather.list[24].wind.speed).ToString() + " mph";
-                    this.WindDirection = Math.Round(weather.list[24].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[24].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[24].main.temp - 32) * 5 / 9)).ToString() + "°C";
-                    this.Clouds = weather.list[24].clouds.all.ToString() + "%";
+                case 3:                    
+                    Weather_Populator(day3, this.DayWeather);
                     break;
-                case 4:
-                    this.Date = DateTime.Parse(weather.list[32].dt_txt).ToString("ddd");
-                    this.Temp = String.Format("{0}°F ", Math.Round(weather.list[32].main.temp));
-                    this.Description = weather.list[32].weather[0].description;
-                    this.Humidity = weather.list[32].main.humidity.ToString() + "%";
-                    this.Pressure = weather.list[32].main.pressure.ToString() + " hPa";
-                    this.WindSpeed = Math.Round(weather.list[32].wind.speed).ToString() + " mph";
-                    this.WindDirection = Math.Round(weather.list[32].wind.deg).ToString() + "°";
-                    this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[32].weather[0].icon)));
-                    this.Celsius = Math.Round(((weather.list[32].main.temp - 32) * 5 / 9)).ToString() + "°C";
-                    this.Clouds = weather.list[32].clouds.all.ToString() + "%";
+                case 4:                   
+                    Weather_Populator(day4, this.DayWeather);
                     break;                
               } 
           }
