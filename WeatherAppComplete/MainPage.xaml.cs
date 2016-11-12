@@ -32,10 +32,7 @@ namespace WeatherAppComplete
 
         // global variable that determines which day of the week to display
         public static int pageState { get; set; }
-
-        public delegate void Control_Population_Handler(FiveDayForecast forecast, int[] days);
-        
-
+    
         public MainPage()
         {
             this.InitializeComponent();
@@ -55,9 +52,6 @@ namespace WeatherAppComplete
             searchBox.Text = "";
             searchBox.GotFocus -= OnFocus;
         }
-
-        
-
 
         //displays day of the week buttons
         private void Button_Displayer()
@@ -99,6 +93,9 @@ namespace WeatherAppComplete
             maxTemp4.Text = forecast.fiveDayForecastArr[days[4]].Temp;
         }
 
+        //controls the flow of data population methods
+        public delegate void Control_Population_Handler(FiveDayForecast forecast, int[] days);
+
         //activates proxy and populates xaml controls with data from proxy with OpenWeatherMap
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
@@ -109,10 +106,11 @@ namespace WeatherAppComplete
             int[] days = { 0, 1, 2, 3, 4 };
 
             Button_Displayer();
-            Control_Population_Handler Populator = new Control_Population_Handler(Icon_Populator);
-            Populator += Date_Populator;
-            Populator += Temp_Populator;
-            Populator(Forecast, days);
+            Control_Population_Handler Icon_Control = new Control_Population_Handler(Icon_Populator);
+            Control_Population_Handler Date_Control = new Control_Population_Handler(Date_Populator);
+            Control_Population_Handler Temp_Control = new Control_Population_Handler(Temp_Populator);
+            Icon_Control += Date_Control + Temp_Control;           
+            Icon_Control(Forecast, days);
         }
 
         //these methods determine which day of the week to display based upon the button pressed by the user

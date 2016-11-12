@@ -71,18 +71,17 @@ namespace WeatherAppComplete
 
     //class that contains more detailed weather information that pertains to a specific day's weather
     public class FullDayWeather
-    {
-        public RootObject DayWeather { get; set; }
+    { 
         public int Day { get; set; }
-        public int day0 = 0;
-        public int day1 = 8;
-        public int day2 = 16;
-        public int day3 = 24;
-        public int day4 = 32;
-           
+        private int day0 = 0;
+        private int day1 = 8;
+        private int day2 = 16;
+        private int day3 = 24;
+        private int day4 = 32;
+
         //populate controls
+        public RootObject DayWeather { get; set; }
         public BitmapImage IconSource { get; set; }
-        //public BitmapImage Background { get; set; }
         public string Date { get; set; }
         public string Temp { get; set; }
         public string Description { get; set; }

@@ -9,11 +9,11 @@
     
         
     <Grid Name="DailyWeatherGrid" BorderBrush="Black" BorderThickness="10">
-        <Grid.Background>
+        <!--<Grid.Background>
             <ImageBrush ImageSource="Assets/clearsky.jpeg">
                 
             </ImageBrush>
-        </Grid.Background>
+        </Grid.Background>-->
         
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
