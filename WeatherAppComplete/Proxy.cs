@@ -14,10 +14,10 @@ namespace WeatherAppComplete
     //proxy class that communicates with OpenWeatherMap's weather api
     class Proxy
     {
-        public async static Task<RootObject> GetWeather(string cityName)
+        public async static Task<RootObject> GetWeather(string cityName, string unit)
         {
             var forecastHttp = new HttpClient();
-            var forecastResponse = await forecastHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units=imperial&appID=156ce1f2ff11af0169f79b186098b7a6", cityName));
+            var forecastResponse = await forecastHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units={1}&appID=156ce1f2ff11af0169f79b186098b7a6", cityName, unit));
             var forecastResult = await forecastResponse.Content.ReadAsStringAsync();
             var forecastSerializer = new DataContractJsonSerializer(typeof(RootObject));
             var forecastMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(forecastResult));
@@ -100,7 +100,7 @@ namespace WeatherAppComplete
             this.Temp = String.Format("{0}°F ", Math.Round(weather.list[day].main.temp));
             this.Description = weather.list[day].weather[0].description;
             this.Humidity = weather.list[day].main.humidity.ToString() + "%";
-            this.Pressure = weather.list[day].main.pressure.ToString() + " hPa";
+            this.Pressure = Math.Round(weather.list[day].main.pressure).ToString() + " hPa";
             this.WindSpeed = Math.Round(weather.list[day].wind.speed).ToString() + " mph";
             this.WindDirection = Math.Round(weather.list[day].wind.deg).ToString() + "°";
             this.IconSource = new BitmapImage(new Uri(String.Format("http://openweathermap.org/img/w/{0}.png", weather.list[0].weather[0].icon)));

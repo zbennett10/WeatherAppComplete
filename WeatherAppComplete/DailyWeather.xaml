@@ -6,15 +6,9 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d" Loaded="PageLoaded">
-    
-        
+
+
     <Grid Name="DailyWeatherGrid" BorderBrush="Black" BorderThickness="10">
-        <!--<Grid.Background>
-            <ImageBrush ImageSource="Assets/clearsky.jpeg">
-                
-            </ImageBrush>
-        </Grid.Background>-->
-        
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
@@ -25,12 +19,12 @@
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
-            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition Width="4.5*"></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             
         </Grid.ColumnDefinitions>
 
-        <StackPanel Name="stackPan" Orientation="Vertical" Grid.Row="2" Grid.Column="0" >
+        <StackPanel Name="stackPan" Orientation="Vertical" Grid.Row="2" Grid.Column="1" >
             <TextBlock Text="Condition:" FontSize="20" Margin="20,0,0,20"></TextBlock>
             <TextBlock Text="Avg Temp:" FontSize="20" Margin="20,0,0,20"></TextBlock>
             <TextBlock Text="Humidity: " FontSize="20" Margin="20,0,0,20"></TextBlock>
@@ -40,7 +34,7 @@
             <TextBlock Text="Cloud Coverage:" FontSize="20" Margin="20,0,0,20"></TextBlock>
           </StackPanel>
 
-        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="2">
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1">
             <TextBlock Name="dailyWeatherDesc" FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>
             <TextBlock Name="dailyMaxTemp" FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold" ></TextBlock>
             <TextBlock Name="dailyHumidity" FontSize="20" Text="No Data" HorizontalAlignment="Right" Margin="0,0,20,20" FontWeight="Bold"></TextBlock>

@@ -72,8 +72,17 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" Margin="15,0,15,0">
+            
             <TextBox Name="searchBox" Text="Enter City" Height="100" Width="350" FontSize="50" GotFocus="OnFocus"/>
-            <Button Name="buttonSearch" Content="Search" Margin="0,15,0,0" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <StackPanel Orientation="Vertical" Width="85">
+                    <CheckBox Name="Imperial" Content="Imperial" Margin="0,10,0,0" ></CheckBox>
+                    <CheckBox Content="Metric"></CheckBox>
+                </StackPanel>
+                
+                <Button Name="buttonSearch" Content="Search" Margin="0,15,0,0" Click="Search_Weather" HorizontalAlignment="Center" Width="150" FontSize="20"/>
+            </StackPanel>
+            
         </StackPanel>
 
         

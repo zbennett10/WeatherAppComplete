@@ -123,7 +123,7 @@ namespace WeatherAppComplete
         private async void PageLoaded(object sender, RoutedEventArgs e)
         {
             string city = MainPage.cityName;        
-            RootObject dayWeather = await Proxy.GetWeather(city);
+            RootObject dayWeather = await Proxy.GetWeather(city, MainPage.unit);
             FullDayWeather day = new FullDayWeather(MainPage.pageState, dayWeather);
             weatherDescription = day.Description;
             Set_Background();

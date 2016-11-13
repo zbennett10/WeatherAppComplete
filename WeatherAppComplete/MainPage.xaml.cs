@@ -32,6 +32,9 @@ namespace WeatherAppComplete
 
         // global variable that determines which day of the week to display
         public static int pageState { get; set; }
+
+        // global variable that determines which unit to fetch from OpenWeatherMap's API
+        public static string unit { get; set; }
     
         public MainPage()
         {
@@ -99,9 +102,12 @@ namespace WeatherAppComplete
         //activates proxy and populates xaml controls with data from proxy with OpenWeatherMap
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
+            if ((bool)Imperial.IsChecked) unit = "imperial";
+            
+
             cityName = searchBox.Text;
             textBlockCity.Text = cityName;
-            RootObject currentWeather = await Proxy.GetWeather(cityName);
+            RootObject currentWeather = await Proxy.GetWeather(cityName, unit);
             FiveDayForecast Forecast = new FiveDayForecast(currentWeather);
             int[] days = { 0, 1, 2, 3, 4 };
 
