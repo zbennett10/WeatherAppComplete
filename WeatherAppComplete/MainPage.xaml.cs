@@ -96,14 +96,28 @@ namespace WeatherAppComplete
             maxTemp4.Text = forecast.fiveDayForecastArr[days[4]].Temp;
         }
 
+        private void Imperial_Checked(object sender, RoutedEventArgs e)
+        {
+            Metric.IsChecked = false;
+        }
+
+        private void Metric_Checked(object sender, RoutedEventArgs e)
+        {
+            Imperial.IsChecked = false;
+        }
+
         //controls the flow of data population methods
         public delegate void Control_Population_Handler(FiveDayForecast forecast, int[] days);
 
         //activates proxy and populates xaml controls with data from proxy with OpenWeatherMap
         private async void Search_Weather(object sender, RoutedEventArgs e)
         {
+            if (Imperial.IsChecked == false && Metric.IsChecked == false)
+            {
+                //enter code to show notification for user to choose a measurement
+            }
             if ((bool)Imperial.IsChecked) unit = "imperial";
-            
+            if ((bool)Metric.IsChecked) unit = "metric";
 
             cityName = searchBox.Text;
             textBlockCity.Text = cityName;

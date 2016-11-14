@@ -111,8 +111,7 @@ namespace WeatherAppComplete
             dailyDayName.Text = day.Date;
             dailyHumidity.Text = day.Humidity;
             dailyPressure.Text = day.Pressure;
-            dailyMaxTemp.Text = day.Temp;
-            ToolTipService.SetToolTip(dailyMaxTemp, day.Celsius);
+            dailyMaxTemp.Text = day.Temp;          
             dailyWindDir.Text = day.WindDirection;
             dailyWindSpeed.Text = day.WindSpeed;
             dailyClouds.Text = day.Clouds;
