@@ -13,6 +13,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Windows.UI.Xaml.Media.Imaging;
+using Windows.UI.Popups;
 
 
 
@@ -96,6 +97,18 @@ namespace WeatherAppComplete
             maxTemp4.Text = forecast.fiveDayForecastArr[days[4]].Temp;
         }
 
+        //method that calls all individual UI control populators
+        private void Control_Populator(FiveDayForecast forecast, int[] days)
+        {
+            Button_Displayer();
+            Control_Population_Handler Icon_Control = new Control_Population_Handler(Icon_Populator);
+            Control_Population_Handler Date_Control = new Control_Population_Handler(Date_Populator);
+            Control_Population_Handler Temp_Control = new Control_Population_Handler(Temp_Populator);
+            Icon_Control += Date_Control + Temp_Control;
+            Icon_Control(forecast, days);
+        }
+
+        //makes sure that only one checkbox is checked at any given time
         private void Imperial_Checked(object sender, RoutedEventArgs e)
         {
             Metric.IsChecked = false;
@@ -106,31 +119,43 @@ namespace WeatherAppComplete
             Imperial.IsChecked = false;
         }
 
+        //checks to see if user has chosen a unit of measurement and populates global variable corresponding to the chosen measurement
+        private void CheckBox_Status_Checker()
+        {
+            if ((bool)Imperial.IsChecked) unit = "imperial";
+            if ((bool)Metric.IsChecked) unit = "metric"; 
+        }
+    
         //controls the flow of data population methods
         public delegate void Control_Population_Handler(FiveDayForecast forecast, int[] days);
 
         //activates proxy and populates xaml controls with data from proxy with OpenWeatherMap
         private async void Search_Weather(object sender, RoutedEventArgs e)
-        {
+        {         
+            CheckBox_Status_Checker();
+
+            //prompts user to select a unit of measurement if the user hasn't selected one yet
             if (Imperial.IsChecked == false && Metric.IsChecked == false)
-            {
-                //enter code to show notification for user to choose a measurement
+            {              
+                MessageDialog noBoxChecked = new MessageDialog("Please choose a unit of measurement.");
+                await noBoxChecked.ShowAsync();
+                return;
             }
-            if ((bool)Imperial.IsChecked) unit = "imperial";
-            if ((bool)Metric.IsChecked) unit = "metric";
+
+            //prompts user to search a legitimate city
+            if (searchBox.Text == "")
+            {
+                MessageDialog searchBoxEmpty = new MessageDialog("Please enter a city to search");
+                await searchBoxEmpty.ShowAsync();
+                return;
+            }
 
             cityName = searchBox.Text;
             textBlockCity.Text = cityName;
             RootObject currentWeather = await Proxy.GetWeather(cityName, unit);
             FiveDayForecast Forecast = new FiveDayForecast(currentWeather);
-            int[] days = { 0, 1, 2, 3, 4 };
-
-            Button_Displayer();
-            Control_Population_Handler Icon_Control = new Control_Population_Handler(Icon_Populator);
-            Control_Population_Handler Date_Control = new Control_Population_Handler(Date_Populator);
-            Control_Population_Handler Temp_Control = new Control_Population_Handler(Temp_Populator);
-            Icon_Control += Date_Control + Temp_Control;           
-            Icon_Control(Forecast, days);
+            int[] days = { 0, 1, 2, 3, 4 };           
+            Control_Populator(Forecast, days);
         }
 
         //these methods determine which day of the week to display based upon the button pressed by the user

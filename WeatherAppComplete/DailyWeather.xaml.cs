@@ -29,6 +29,9 @@ namespace WeatherAppComplete
             this.InitializeComponent();     
         }
 
+        //global variable that is populated by the current day's weather description
+        public static string weatherDescription;
+
         //capitalizes first letter of every word in the weather description
         public static string ToTitleCase(string str)
         {
@@ -41,8 +44,7 @@ namespace WeatherAppComplete
 
            return string.Join(" ", wordArr);
          }
-
-        
+     
         //matches description of weather to a specific background photo
         Dictionary<string, string> ImageUrls = new Dictionary<string, string>()
         {
@@ -64,9 +66,6 @@ namespace WeatherAppComplete
                 ImageSource = new BitmapImage { UriSource = new Uri(ImageUrls[description]) }
             };
         }
-
-        //global variable that is populated by the current day's weather description
-        public static string weatherDescription; 
 
         //array that contains weather "buzz" words for the Set_Background() method
         //this array also contains the same values as our dictionary

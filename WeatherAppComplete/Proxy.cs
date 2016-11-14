@@ -105,14 +105,8 @@ namespace WeatherAppComplete
         private void Weather_Populator(int day, RootObject weather)
         {
             this.Date = DateTime.Parse(weather.list[day].dt_txt).ToString("ddd");
-            if (MainPage.unit == "imperial")
-            {
-                this.Temp = String.Format("{0}°F ", Math.Round(weather.list[day].main.temp));
-            }
-            if (MainPage.unit == "metric")
-            {
-                this.Temp = String.Format("{0}°C ", Math.Round(weather.list[day].main.temp));
-            }
+            if (MainPage.unit == "imperial") this.Temp = String.Format("{0}°F ", Math.Round(weather.list[day].main.temp));         
+            if (MainPage.unit == "metric") this.Temp = String.Format("{0}°C ", Math.Round(weather.list[day].main.temp));     
             this.Description = weather.list[day].weather[0].description;
             this.Humidity = weather.list[day].main.humidity.ToString() + "%";
             this.Pressure = Math.Round(weather.list[day].main.pressure).ToString() + " hPa";
