@@ -28,6 +28,12 @@ namespace WeatherAppComplete
     /// </summary>
     public sealed partial class MainPage : Page
     {
+        public MainPage()
+        {
+            this.InitializeComponent();
+
+        }
+
         // global variable that causes the name of the searched city to persist throughout multiple pages  
         public static string cityName { get; set; }
 
@@ -36,17 +42,10 @@ namespace WeatherAppComplete
 
         // global variable that determines which unit to fetch from OpenWeatherMap's API
         public static string unit { get; set; }
-    
-        public MainPage()
-        {
-            this.InitializeComponent();
-           
-        }
-
+        
         //sets focus off of the textbox where our search is conducted
         private void MainPage_OnLoad(object sender, RoutedEventArgs e)
-        {
-            
+        {      
             buttonSearch.Focus(FocusState.Programmatic);
         }
 

@@ -15,14 +15,11 @@
             <StackPanel.Background>
                 <ImageBrush ImageSource="Assets/weather_banner1.jpg"></ImageBrush>
             </StackPanel.Background>
-            
-            
         </StackPanel>
         
         <StackPanel>
             <TextBlock Name="textBlockCity" Text=""  TextAlignment="Center" FontSize="60" FontWeight="Bold" />
         </StackPanel>
-
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" >
             <StackPanel Orientation="Vertical" Margin="15,0,15,0">
@@ -84,11 +81,6 @@
             </StackPanel>
             
         </StackPanel>
-
-        
-            
-
-       
-
+ 
     </StackPanel>
 </Page>

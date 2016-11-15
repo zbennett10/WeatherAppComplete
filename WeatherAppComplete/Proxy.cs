@@ -14,10 +14,16 @@ namespace WeatherAppComplete
     //proxy class that communicates with OpenWeatherMap's weather api
     class Proxy
     {
+        
+        
+
+
         public async static Task<RootObject> GetWeather(string cityName, string unit)
         {
+            var resources = new Windows.ApplicationModel.Resources.ResourceLoader("resourcesFile");
+            string token = resources.GetString("token");
             var forecastHttp = new HttpClient();
-            var forecastResponse = await forecastHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units={1}&appID=156ce1f2ff11af0169f79b186098b7a6", cityName, unit));
+            var forecastResponse = await forecastHttp.GetAsync(String.Format("http://api.openweathermap.org/data/2.5/forecast?q={0}&units={1}&appID={2}", cityName, unit, token));
             var forecastResult = await forecastResponse.Content.ReadAsStringAsync();
             var forecastSerializer = new DataContractJsonSerializer(typeof(RootObject));
             var forecastMemoryStream = new MemoryStream(Encoding.UTF8.GetBytes(forecastResult));
